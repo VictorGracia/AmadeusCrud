@@ -1,6 +1,6 @@
 
 # Al clonar es necesario hacer el npm install
-# Para iniciar la api se hace desde AmadeusApi y con dotnet run
+# La Api debe estar corriendo el [local](http://localhost:5007 )
 # Para correr las pruebas unitarias, se hace desde AmadeusApi y con dotnet test
 # En el front se está llamando la api desde http://localhost:5007 
 # El front se corre con ng serve
