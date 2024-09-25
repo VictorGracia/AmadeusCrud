@@ -1,6 +1,6 @@
 
-# Para iniciar la api se hace desde Api y con dotnet run
-# Para correr las pruebas unitarias, se hace desde Api y con dotnet test
+# Para iniciar la api se hace desde AmadeusApi y con dotnet run
+# Para correr las pruebas unitarias, se hace desde AmadeusApi y con dotnet test
 # En el front se está llamando la api desde http://localhost:5007 
 # El front se corre con ng serve
 # El usuario es: test y la constraseña: password del login 
