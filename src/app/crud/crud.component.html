@@ -1,0 +1,128 @@
+<div class="amadeus-container">
+    <header>
+        <img src="https://amadeus.com/content/dam/amadeuswebevo/brand/amadeus/logos/amadeus-logo-dark-sky.png"
+            alt="Amadeus logo" class="logo">
+    </header>
+    <main>
+        <section class="client-form card">
+            <h2>{{ editingCliente ? 'Editar Cliente' : 'Nuevo Cliente' }}</h2>
+            <form (ngSubmit)="editingCliente ? updateCliente() : addCliente()">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input id="nombre" [ngModel]="editingCliente ? editingCliente.nombre : newCliente.nombre"
+                            (ngModelChange)="editingCliente ? (editingCliente.nombre = $event) : (newCliente.nombre = $event)"
+                            name="nombre" type="text" placeholder="Ingrese el nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input id="apellido" [ngModel]="editingCliente ? editingCliente.apellido : newCliente.apellido"
+                            (ngModelChange)="editingCliente ? (editingCliente.apellido = $event) : (newCliente.apellido = $event)"
+                            name="apellido" type="text" placeholder="Ingrese el apellido">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" [ngModel]="editingCliente ? editingCliente.email : newCliente.email"
+                            (ngModelChange)="editingCliente ? (editingCliente.email = $event) : (newCliente.email = $event)"
+                            name="email" type="email" placeholder="Ingrese el email">
+                    </div>
+                    
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tipoDocumento">Tipo Documento</label>
+                        <input id="tipoDocumento"
+                            [ngModel]="editingCliente ? editingCliente.tipoDocumento : newCliente.tipoDocumento"
+                            (ngModelChange)="editingCliente ? (editingCliente.tipoDocumento = $event) : (newCliente.tipoDocumento = $event)"
+                            name="tipoDocumento" type="text" placeholder="Ingrese el tipo de documento">
+                    </div>
+                    <div class="form-group">
+                        <label for="numeroDocumento">Número Documento</label>
+                        <input id="numeroDocumento"
+                            [ngModel]="editingCliente ? editingCliente.numeroDocumento : newCliente.numeroDocumento"
+                            (ngModelChange)="editingCliente ? (editingCliente.numeroDocumento = $event) : (newCliente.numeroDocumento = $event)"
+                            name="numeroDocumento" type="text" placeholder="Ingrese el número de documento">
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaNacimiento">Fecha Nacimiento</label>
+                        <input id="fechaNacimiento"
+                            [ngModel]="editingCliente ? editingCliente.fechaNacimiento : newCliente.fechaNacimiento"
+                            (ngModelChange)="editingCliente ? (editingCliente.fechaNacimiento = $event) : (newCliente.fechaNacimiento = $event)"
+                            name="fechaNacimiento" type="date">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pais">País</label>
+                        <input id="pais" [ngModel]="editingCliente ? editingCliente.pais : newCliente.pais"
+                            (ngModelChange)="editingCliente ? (editingCliente.pais = $event) : (newCliente.pais = $event)"
+                            name="pais" type="text" placeholder="Ingrese el país">
+                    </div>
+                    <div class="form-group">
+                        <label for="saldo">Saldo</label>
+                        <input id="saldo" [ngModel]="editingCliente ? editingCliente.saldo : newCliente.saldo"
+                            (ngModelChange)="editingCliente ? (editingCliente.saldo = $event) : (newCliente.saldo = $event)"
+                            name="saldo" type="number" placeholder="Ingrese el saldo">
+                    </div>
+                    <div class="form-group checkbox">
+                        <label for="esActivo">
+                            <input id="esActivo"
+                                [ngModel]="editingCliente ? editingCliente.esActivo : newCliente.esActivo"
+                                (ngModelChange)="editingCliente ? (editingCliente.esActivo = $event) : (newCliente.esActivo = $event)"
+                                name="esActivo" type="checkbox">
+                            Activo
+                        </label>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">{{ editingCliente ? 'Actualizar' : 'Crear' }}</button>
+                    <button *ngIf="editingCliente" type="button" class="btn-secondary"
+                        (click)="cancelEdit()">Cancelar</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="client-list card">
+            <h2>Listado de Clientes</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Email</th>
+                            <th>Tipo Documento</th>
+                            <th>Número Documento</th>
+                            <th>Fecha Nacimiento</th>
+                            <th>País</th>
+                            <th>Saldo</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cliente of clientes">
+                            <td>{{cliente.nombre}}</td>
+                            <td>{{cliente.apellido}}</td>
+                            <td>{{cliente.email}}</td>
+                            <td>{{cliente.tipoDocumento}}</td>
+                            <td>{{cliente.numeroDocumento}}</td>
+                            <td>{{cliente.fechaNacimiento | date:'dd/MM/yyyy'}}</td>
+                            <td>{{cliente.pais}}</td>
+                            <td>{{cliente.saldo | currency:'USD':'symbol':'1.2-2'}}</td>
+                            <td>
+                                <span class="status-indicator" [class.active]="cliente.esActivo">
+                                    {{cliente.esActivo ? 'Activo' : 'Inactivo'}}
+                                </span>
+                            </td>
+                            <td class="actions">
+                                <button class="btn-edit" (click)="editCliente(cliente)">Editar</button>
+                                <button class="btn-delete" (click)="deleteCliente(cliente.id)">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>

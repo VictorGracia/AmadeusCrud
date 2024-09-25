@@ -1,0 +1,19 @@
+.amadeus-container {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    display: flex; 
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.btn-logout {
+    color: #a90000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border: none;
+    background: none;
+    border-bottom: 1px solid #a90000;
+}
