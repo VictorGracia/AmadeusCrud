@@ -1,28 +1,40 @@
-# AmadeusCrud
+# Para iniciar la api se hace desde Api y con dotnet run
+# Para correr las pruebas unitarias, se hace desde Api y con dotnet test
+# En el front se está llamando la api desde http://localhost:5007 
+# El front se corre con ng serve
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.6.
+# Proyecto API
 
-## Development server
+Este proyecto es una API desarrollada utilizando .NET 8.0. porque es la versión que tengo disponible en mi maquina. La API se conecta a una base de datos SQL Server alojada en Azure.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Base de Datos
 
-## Code scaffolding
+Se ha creado una base de datos en Azure SQL Server. A continuación se detallan las credenciales necesarias para acceder a ella:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Servidor:** `amadeussqldatabase.database.windows.net`
+- **Base de Datos:** `amadeus_db`
+- **Usuario:** `user_root`
+- **Contraseña:** `Amadeus_DB_key*!`
 
-## Build
+### 1. Controladores
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+La **capa de controladores** maneja las solicitudes HTTP y las respuestas que se envían al cliente. Cada controlador se encarga de una entidad o funcionalidad específica y se basa en los servicios de la capa de negocio para procesar las solicitudes.
 
-## Running unit tests
+### 2. Modelos
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+La **capa de modelos** define las entidades del dominio que representan los datos en la base de datos. Cada modelo es una representación de una tabla en la base de datos y contiene las propiedades correspondientes.
 
-## Running end-to-end tests
+### 3. Consultas (Queries)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+La **capa de consultas** utiliza Entity Framework para realizar operaciones de acceso a datos. Aquí se pueden implementar métodos específicos que encapsulan las consultas complejas necesarias para interactuar con la base de datos de manera eficiente.
 
-## Further help
+## Uso de Entity Framework
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# AmadeusCrud
+Entity Framework se utiliza en este proyecto para facilitar la interacción con la base de datos. Proporciona una forma sencilla y eficiente de realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en los datos y permite la utilización de LINQ para consultas más complejas, simplificando así el acceso a los datos.
+
+## Se agrega el archivo queries para poner ahí las creaciones importantes
+
+
+## Frontend
+
+El frontend está desarrollado en Angular, proporcionando una interfaz de usuario interactiva que consume la API. Se asegura una buena comunicación entre el frontend y el backend a través de solicitudes HTTP, utilizando el endpoint de la API.
